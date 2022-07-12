@@ -33,13 +33,13 @@ export default function Index() {
   }
 
   return (
-    <div>
+    <div style={{ paddingLeft: '20%', paddingRight: '20%' }}>
       <div
         style={{
           display: 'flex',
           justifyContent: 'flex-end',
           paddingTop: '50px',
-          paddingRight: '100px'
+          paddingRight: "7%"
         }}
       >
         {active ? (
@@ -53,9 +53,12 @@ export default function Index() {
         )}
       </div>
 
-      <div style={{ paddingLeft: '20%', paddingRight: '20%' }}>
+      <div>
         <h1> gm </h1>
-        <ListGroup as="ol" style={{ paddingBottom: '50px' }}>
+        <ListGroup
+          as="ol"
+          style={{ paddingBottom: '50px', paddingRight: '7%' }}
+        >
           {messages.map((message, index) => (
             <ListGroup.Item
               key={index}
