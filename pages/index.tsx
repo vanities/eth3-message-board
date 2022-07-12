@@ -53,9 +53,9 @@ export default function Index() {
         )}
       </div>
 
-      <div style={{ padding: '20%' }}>
+      <div style={{ paddingLeft: '20%', paddingRight: '20%' }}>
         <h1> gm </h1>
-        <ListGroup as="ol" numbered style={{ paddingBottom: '50px' }}>
+        <ListGroup as="ol" style={{ paddingBottom: '50px' }}>
           {messages.map((message, index) => (
             <ListGroup.Item
               key={index}
@@ -63,9 +63,9 @@ export default function Index() {
               className="d-flex justify-content-between align-items-start"
             >
               <div className="ms-2 me-auto">{message.message}</div>
-              <Badge bg="primary" pill>
-                {message.hash}
-              </Badge>
+              {message.hash.slice(0, 5)}
+              ...
+              {message.hash.slice(-5, message.hash.count)}
             </ListGroup.Item>
           ))}
         </ListGroup>
@@ -73,9 +73,11 @@ export default function Index() {
         <MessageForm
           library={library}
           onChange={(message) => {
-            messages.push({ message: message.value, hash: message.hash })
-            console.log(`setting messages ${JSON.stringify(messages)}`)
-            setMessages(messages)
+            const newMessages = messages.concat([
+              { message: message.value, hash: message.hash }
+            ])
+            console.log(`setting messages ${JSON.stringify(newMessages)}`)
+            setMessages(newMessages)
           }}
         />
       </div>
