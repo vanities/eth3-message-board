@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -43,4 +44,9 @@ export class MessageForm extends Component {
       </Form>
     )
   }
+}
+
+MessageForm.propTypes = {
+  library: PropTypes.object,
+  onChange: PropTypes.func
 }
