@@ -6,7 +6,21 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 
-export class MessageForm extends Component {
+type Message = {
+  value: string
+  hash: string
+}
+
+interface MessageFormProps {
+  library: any
+  onChange: (message: Message) => void
+}
+
+interface MessageFormState {
+  value: string
+}
+
+export class MessageForm extends Component<MessageFormProps, MessageFormState> {
   state = {
     value: ''
   }
@@ -17,7 +31,7 @@ export class MessageForm extends Component {
     const signature = await this.props.library?.getSigner().signMessage(message)
     if (signature !== undefined) {
       console.log(`signing message..${message} ${signature} `)
-      this.props.onChange({ message: message, hash: signature })
+      this.props.onChange({ value: message, hash: signature })
     } else {
       console.error('Error signing message, no signature')
     }
@@ -44,9 +58,4 @@ export class MessageForm extends Component {
       </Form>
     )
   }
-}
-
-MessageForm.propTypes = {
-  library: PropTypes.object,
-  onChange: PropTypes.func
 }

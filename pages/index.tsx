@@ -56,8 +56,9 @@ export default function Index() {
       <div style={{ padding: '20%' }}>
         <h1> gm </h1>
         <ListGroup as="ol" numbered style={{ paddingBottom: '50px' }}>
-          {messages.forEach((message) => (
+          {messages.map((message, index) => (
             <ListGroup.Item
+              key={index}
               as="li"
               className="d-flex justify-content-between align-items-start"
             >
@@ -71,8 +72,8 @@ export default function Index() {
 
         <MessageForm
           library={library}
-          onChange={(message, hash) => {
-            messages.push({ message: message, hash: hash })
+          onChange={(message) => {
+            messages.push({ message: message.value, hash: message.hash })
             console.log(`setting messages ${JSON.stringify(messages)}`)
             setMessages(messages)
           }}
